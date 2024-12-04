@@ -1,0 +1,110 @@
+<!-- Main container with sidebar and navbar -->
+<div class="container-scroller">
+    <app-sidebar></app-sidebar>
+    <div class="container-fluid page-body-wrapper">
+        <app-navbar></app-navbar>
+        <div class="main-panel">
+            <div class="content-wrapper">
+
+                <!-- Form to create a new Matière -->
+                <form (ngSubmit)="onSubmit()" #matiereForm="ngForm">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title">Créer Matière</h2>
+                            <div *ngIf="alertVisible3" class="alert alert-danger mt-3" role="alert">
+                                Aucun professeur trouvé. Veuillez ajouter des <strong>Professeurs</strong> d'abord!!
+                            </div>
+                            <!-- Row for input fields (Nom, Année, and Semestre) -->
+                            <div class="row">
+
+                                <!-- Name of Matière -->
+                                <div class="col-md">
+                                    <label for="libelle_Matiere" class="col-sm col-form-label input-label">Nom</label>
+                                    <input type="text" class="form-control custom-input" id="libelle_Matiere" required
+                                        [(ngModel)]="matiere.libelle" name="libelle_Matiere" />
+                                </div>
+
+                                <!-- Year selection -->
+                                <div class="col-md">
+                                    <label class="col-sm col-form-label input-label">Année</label>
+                                    <select class="form-control custom-input" [(ngModel)]="selectedClassYear"
+                                        name="annee" required>
+                                        <option [ngValue]="1">1ère Année</option>
+                                        <option [ngValue]="2">2ème Année</option>
+                                        <option [ngValue]="3">3ème Année</option>
+                                    </select>
+                                </div>
+
+                                <!-- Semester selection -->
+                                <div class="col-md">
+                                    <label class="col-sm col-form-label input-label">Semestre</label>
+                                    <select class="form-control custom-input" [(ngModel)]="matiere.semestre"
+                                        name="semestre" required>
+                                        <option value="1">S1</option>
+                                        <option value="2">S2</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+
+                            <!-- Row for Professors and Classes selection -->
+                            <div class="row">
+
+                                <!-- Professors selection (Checkbox list) -->
+                                <div class="col-md">
+                                    <label class="col-sm col-form-label input-label">Professors</label>
+                                    <div class="checklist-container">
+                                        <div *ngFor="let professeur of professeurs" class="form-check">
+                                            <input type="checkbox" class="form-check-input checkbox-input"
+                                                (change)="toggleSelectionProf(professeur)"
+                                                [id]="'professeur-' + professeur.id_Professeur" />
+                                            <label class="form-check-label"
+                                                [for]="'professeur-' + professeur.id_Professeur">
+                                                {{ professeur.nom_Prof }} {{ professeur.prenom_Prof }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Classes selection (Checkbox list) -->
+                                <div class="col-md">
+                                    <label class="col-sm col-form-label input-label">Classes</label>
+                                    <div class="checklist-container">
+                                        <div *ngFor="let classe of classes" class="form-check">
+                                            <input type="checkbox" class="form-check-input checkbox-input"
+                                                (change)="toggleSelectionClasse(classe)"
+                                                [id]="'classe-' + classe.id_Classe" />
+                                            <label class="form-check-label" [for]="'classe-' + classe.id_Classe">
+                                                {{ classe.nom_Classe }} - {{ classe.annee_Classe }}0{{ classe.num_Classe
+                                                }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Success/Error Alert Messages -->
+                        <div *ngIf="alertVisible1" class="alert alert-primary mt-3" role="alert">
+                            Matière ajoutée avec succès
+                        </div>
+                        <div *ngIf="alertVisible2" class="alert alert-danger mt-3" role="alert">
+                            Erreur lors de l'ajout !!
+                        </div>
+                        <hr>
+
+                        <!-- Submit and Cancel buttons -->
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-secondary mr-2">
+                                <i class="bi bi-floppy"></i> Ajouter
+                            </button>
+                            <button type="button" class="btn btn-danger" (click)="cancel()">
+                                <i class="bi bi-backspace-reverse"></i> Annuler
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

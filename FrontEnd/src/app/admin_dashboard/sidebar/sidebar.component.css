@@ -1,0 +1,145 @@
+
+
+
+h1 {
+  color: #0978dd !important;
+  font-size: larger !important;
+}
+
+.nav a {
+  position: relative;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: bold !important;
+  text-decoration: none;
+  padding: 6.5px !important;
+  margin: 0 5px;
+  transition: color 0.3s ease, background-color 0.1s ease !important;
+}
+
+.active{
+    font-weight: bold;
+    color: #0978dd !important;
+}
+
+.nav a::before,
+.nav a::after {
+  content: "";
+  position: absolute;
+  display: block;
+  border: 0px solid transparent;
+  width: 0%;
+  height: 0%;
+  transition: all 0.5s ease;
+}
+
+.nav a::after {
+  top: 0;
+  left: 0;
+  border-top: 3px solid transparent;
+  border-left: 3px solid transparent;
+}
+
+.nav a::before {
+  right: 0;
+  bottom: 0;
+  border-bottom: 3px solid transparent;
+  border-right: 3px solid transparent;
+}
+
+.nav a:hover {
+  text-decoration: none;
+  color: #0978dd !important;
+  font-weight: bolder;
+  border-radius: 15px;
+}
+
+.nav a:hover::before,
+.nav a:hover::after {
+  width: 10px;
+  height: 10px;
+  border-color: #0978dd;
+}
+
+.nav-link {
+  cursor: pointer;
+}
+
+.nav-item.menu-items:hover .menu-title {
+  color: #0088dd;
+  text-decoration: none;
+  font-size: 15px !important;
+  font-weight: bolder;
+}
+
+.profile-name {
+  color: #0088dd !important;
+}
+
+.dropdown-item:hover {
+  background-color: inherit !important;
+}
+
+.profile-name h3 {
+  font-family: cursive !important;
+}
+
+.sidebar-brand {
+  padding: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.sidebar-title {
+  margin: 0;
+  color: #0088dd !important;
+  font-family: cursive !important;
+  font-weight: bold;
+  font-size: 24px;
+  font-weight: 700;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  transition: color 0.4s ease-in-out;
+}
+
+.sidebar-brand::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #0088dd;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: bottom right;
+}
+
+.sidebar-brand:hover {
+  color: #0088dd;
+  text-decoration: none !important;
+}
+
+
+
+.sidebar .nav {
+  margin-bottom: 0 !important;
+}
+
+#sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+#sidebar .nav {
+  flex-grow: 1;
+}
+
+.bottom-item {
+  margin-top: auto;
+}
+
+

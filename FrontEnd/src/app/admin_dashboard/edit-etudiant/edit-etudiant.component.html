@@ -1,0 +1,95 @@
+<div class="container-scroller">
+  <app-sidebar></app-sidebar>
+  <div class="container-fluid page-body-wrapper">
+    <app-navbar></app-navbar>
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <div class="col-12 grid-margin">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">Modifier Etudiant</h2>
+              <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <p class="card-description"><i class="bi bi-dot"></i> Informations Personnelles </p>
+
+                <div class="row">
+                  <div class="col-md">
+                    <label class="col-sm col-form-label input-label">Nom</label>
+                    <input type="text" id="nom_Etd" class="form-control custom-input" formControlName="nom_Etd" />
+                  </div>
+
+                  <div class="col-md">
+                    <label class="col-sm col-form-label input-label">Prénom</label>
+                    <input type="text" id="prenom_Etd" class="form-control custom-input" formControlName="prenom_Etd" />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md">
+                    <label class="col-sm col-form-label input-label">Email</label>
+                    <input type="email" id="email_Etd" class="form-control custom-input" formControlName="email_Etd" />
+                  </div>
+
+                  <div class="col-md">
+                    <label class="col-sm col-form-label input-label">Mot de passe</label>
+                    <div class="input-group">
+                        <input 
+                            type="password" 
+                            id="mot_de_passe_Etd" 
+                            [type]="isPasswordVisible ? 'text' : 'password'" 
+                            class="form-control custom-input" 
+                            formControlName="mot_de_passe_Etd" />
+                            <span class="input-group-text2" (click)="togglePasswordVisibility()" style="cursor: pointer;">
+                              <i class="bi" [ngClass]="isPasswordVisible ? 'bi-eye-slash' : 'bi-eye'"></i>
+                            </span>
+                    </div>
+                  </div>
+                </div>
+
+                <br>
+
+                <p class="card-description"><i class="bi bi-dot"></i> Informations Académiques </p>
+
+                <div class="row">
+                  <div class="col-md">
+                  <label class="col-sm col-form-label input-label">Année de la Classe</label>
+                  <select formControlName="anneeClasse" class="form-control custom-input">
+                    <option *ngFor="let year of years" [value]="year">{{ year }} année</option>
+                  </select>
+                  </div>
+                
+                <div class="col-md">
+                  <label class="col-sm col-form-label input-label">Nom de la Classe</label>
+                  <select formControlName="classe" class="form-control custom-input">
+                    <option *ngFor="let classe of filteredClasses" [ngValue]="classe">
+                      {{ classe.nom_Classe }} {{ classe.num_Classe }}
+                    </option>
+                  </select>
+                  </div>
+                  <div class="col-md">
+                    <label class="col-sm col-form-label input-label">Numéro de Classe</label>
+                    <input 
+                      type="number" 
+                      class="form-control custom-input" 
+                      formControlName="numClasse" 
+                      [value]="form.get('classe')?.value?.num_Classe" 
+                      readonly />
+                  </div>
+                
+                </div>
+          
+                <hr>
+
+                <div class="d-flex justify-content-end">
+                 
+                  <button type="submit" class="btn btn-secondary mr-2" [disabled]="form.invalid"><i class="bi bi-floppy"></i>Modifier</button>
+                  <a routerLink="/listes-etudiants" class="btn btn-danger ml-2" (click)="cancel()"><i class="bi bi-backspace-reverse"></i> Annuler</a>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

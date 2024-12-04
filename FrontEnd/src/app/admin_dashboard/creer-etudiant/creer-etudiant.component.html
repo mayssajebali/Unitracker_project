@@ -1,0 +1,119 @@
+<div class="container-scroller">
+  <!-- Sidebar Component -->
+  <app-sidebar></app-sidebar>
+  <div class="container-fluid page-body-wrapper">
+
+    <!-- Navbar Component -->
+    <app-navbar></app-navbar>
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <div class="col-12 grid-margin">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Créer un Etudiant</h4>
+              <div *ngIf="alertVisible3" class="alert alert-danger mt-3" role="alert">
+                Aucun classe trouvé. Veuillez ajouter des <strong>Classes</strong> d'abord!!
+            </div>
+
+              <!-- Form starts here -->
+              <form class="form-sample" [formGroup]="form" (ngSubmit)="onSubmit()">
+                
+                <!-- Personal Information Section -->
+                <p class="card-description"><i class="bi bi-dot"></i> Informations Personnelles </p>
+                <div class="row">
+
+                  <!-- Student Name -->
+                  <div class="col-md">
+                    <label class="col-sm col-form-label input-label">Nom</label>
+                    <input type="text" class="form-control custom-input" formControlName="nom_Etd" />
+                  </div>
+
+                  <!-- Student Surname -->
+                  <div class="col-md">
+                    <label class="col-sm col-form-label input-label">Prénom</label>
+                    <input type="text" class="form-control custom-input" formControlName="prenom_Etd" />
+                  </div>
+                </div>
+                <div class="row">
+
+                  <!-- Student Email -->
+                  <div class="col-md">
+                    <label class="col-sm col-form-label input-label">Mail</label>
+                    <input type="text" class="form-control custom-input" formControlName="email_Etd" />
+                  </div>
+
+                  <!-- Student Password -->
+                  <div class="col-md">
+                    <label class="col-sm col-form-label input-label">Mot de passe</label>
+                    <div class="input-group">
+                        <input 
+                            type="password" 
+                            class="form-control custom-input" 
+                            [type]="isPasswordVisible ? 'text' : 'password'" 
+                            formControlName="mot_de_passe_Etd" 
+                            [value]="form.get('mot_de_passe_Etd')?.value" 
+                            readonly />
+                        <span class="input-group-text1" (click)="generateAndSetPassword()" style="cursor: pointer;">
+                            <i class="bi bi-shuffle"></i>
+                        </span>
+                        <span class="input-group-text2" (click)="togglePasswordVisibility()" style="cursor: pointer;">
+                          <i class="bi" [ngClass]="isPasswordVisible ? 'bi-eye-slash-fill' : 'bi-eye-fill'"></i>
+                        </span>
+                    </div>
+                    <small class="form-text text-muted">Mot de passe généré automatiquement.</small>
+                  </div>
+                </div>
+                <br>
+
+                <!-- Academic Information Section -->
+                <p class="card-description"><i class="bi bi-dot"></i> Informations Académiques </p>
+                <div class="row">
+                  <!-- Year Selection -->
+                  <div class="col-md">
+                    <label class="col-sm col-form-label input-label">Année</label>
+                    <select class="form-control custom-input" formControlName="anneeClasse" (change)="onYearChange()">
+                      <option [ngValue]="1">1ère Année</option>
+                      <option [ngValue]="2">2ème Année</option>
+                      <option [ngValue]="3">3ème Année</option>
+                    </select>
+                  </div>
+
+                  <!-- Class Selection -->
+                  <div class="col-md">
+                    <label class="col-sm col-form-label input-label">Classe</label>
+                    <select class="form-control custom-input" formControlName="classe" (change)="onClasseChange($event)">
+                      <option *ngFor="let classe of filteredClasses" [ngValue]="classe">{{ classe.nom_Classe }} {{ classe.num_Classe }}</option>
+                    </select>
+                  </div>
+
+                  <!-- Class Number -->
+                  <div class="col-md">
+                    <label class="col-sm col-form-label input-label">Numéro de Classe</label>
+                    <input 
+                      type="number" 
+                      class="form-control custom-input" 
+                      formControlName="numClasse" 
+                      [value]="form.get('classe')?.value?.num_Classe" 
+                      readonly />
+                  </div>
+                </div>
+
+                <!-- Success/Error Alerts -->
+                <div *ngIf="alertVisible1" class="alert alert-primary mt-3" role="alert">Professeur ajouté avec succès</div>
+                <div *ngIf="alertVisible2" class="alert alert-danger mt-3" role="alert">Erreur lors de l'ajout !!</div>
+
+                <hr>
+
+                <!-- Action Buttons -->
+                <div class="d-flex justify-content-end">
+                  <button type="submit" class="btn btn-secondary mr-2"><i class="bi bi-floppy"></i> Ajouter</button>
+                  <button type="button" class="btn btn-danger" (click)="cancel()"><i class="bi bi-backspace-reverse"></i> Annuler</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

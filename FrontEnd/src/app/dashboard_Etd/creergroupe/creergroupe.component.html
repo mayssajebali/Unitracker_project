@@ -1,0 +1,84 @@
+<div class="container-scroller">
+  <app-sidebar-etd></app-sidebar-etd>
+  <div class="container-fluid page-body-wrapper">
+    <app-navbar-etd></app-navbar-etd>
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <div class="row w-0 m-0">
+          <div class="card col-lg-8 mx-auto">
+            <div class="card-body px-5 py-5">
+              <h2 class="card-title text-left mb-3">Créer Groupe</h2>
+              <hr>
+              <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                
+                <div class="form-group">
+                  <div class="form-label">
+                    <label for="libelle_Groupe">Nom <span class="text-danger">*</span> :</label>
+                  </div>
+                  <div class="form-input">
+                    <input 
+                      type="text" 
+                      id="libelle_Groupe" 
+                      class="form-control p_input" 
+                      formControlName="libelle_Groupe">
+                  </div>
+                </div>
+<!-- -------------------------------------------------------------------------- -->
+                <div class="form-group">
+                  <div class="form-label">
+                    <label for="etudiants">Etudiants <span class="text-danger">*</span> :</label>
+                  </div>
+                  <div class="form-input">
+                    <select 
+                          multiple 
+                          class="form-control p_input" 
+                          formControlName="etudiants" 
+                          id="etudiants" 
+                          style="height: 150px;"
+                          (change)="onSelectEtudiants()">
+                          <option *ngFor="let etudiant of etudiants" [value]="etudiant.id_Etudiant">
+                              {{ etudiant.nom_Etd }} {{ etudiant.prenom_Etd }}
+                          </option>
+                      </select>
+
+                  </div>
+                </div>
+      <!--------------- ------------------------------------------------------------------------ -->
+        
+                <div *ngIf="selectedEtudiants.length > 0">
+                  <h3>Étudiants sélectionnés :</h3>
+                  <ul>
+                    <li *ngFor="let etudiant of selectedEtudiants">
+                      {{ etudiant.nom_Etd }} {{ etudiant.prenom_Etd }}
+                    </li>
+                  </ul>
+                </div>
+      <!-- ------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+                <hr>
+                <div class="d-flex justify-content-end">
+                  <button type="submit" class="btn btn-primary mr-2">
+                    <i class="bi bi-plus-square"></i>Submit
+                  </button>
+                  <!-- ----------id a corriger selon l'authentification -->
+                  <button class="btn btn-secondary" [routerLink]="['/dashEtd',idEtudiant+1,'listetacheperso']"><i class="bi bi-backspace-reverse"></i>Annuler</button>
+          
+
+                  
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

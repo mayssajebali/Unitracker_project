@@ -1,0 +1,107 @@
+<div class="container-scroller">
+  <app-sidebar-etd></app-sidebar-etd>
+  <div class="container-fluid page-body-wrapper">
+    <app-navbar-etd></app-navbar-etd>
+
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <div class="row w-0 m-0">
+          <div class="card px-8g mx-auto">
+            <div class="card-body px-5 py-5">
+              <h2 class="card-title text-left mb-3">Mofifier Tache Personnelle</h2>
+              <hr>
+              <form [formGroup]="tacheForm" (ngSubmit)="updateTache()">
+
+                <div class="form-group">
+                  <div class="form-label">
+                    <label for="titre">Titre :</label>
+                  </div>
+                  <div class="form-input">
+                    <input 
+                      type="text" 
+                      class="form-control p_input" 
+                      formControlName="titre">
+                  </div>
+                </div>
+
+                <!-- Uncomment if needed
+                <div class="form-group">
+                  <div class="form-label">
+                    <label for="matiere">Matiere :</label>
+                  </div>
+                  <div class="form-input">
+                    <select class="form-control p_input" formControlName="matiere" id="matiere">
+                      <option *ngFor="let matiere of matieres" [ngValue]="matiere">
+                        {{ matiere.libelle }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                -->
+
+                <!-- Uncomment if needed
+                <div class="form-group">
+                  <div class="form-label">
+                    <label for="type">Type :</label>
+                  </div>
+                  <div class="form-input">
+                    <select class="form-control p_input" formControlName="type">
+                      <option value="Tache">Tache</option>
+                      <option value="Projet">Projet</option>
+                    </select>
+                  </div>
+                </div>
+                -->
+
+                <div class="form-group">
+                  <div class="form-label">
+                    <label for="description">Description :</label>
+                  </div>
+                  <div class="form-input">
+                    <textarea 
+                      class="form-control" 
+                      formControlName="description"></textarea>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <div class="form-label">
+                    <label for="dateLimite">Date limite :</label>
+                  </div>
+                  <div class="form-input">
+                    <input 
+                      type="datetime-local" 
+                      class="form-control custom-datetime-dark" 
+                      formControlName="dateLimite">
+                  </div>
+                </div>
+
+                <!-- Uncomment if needed
+                <div class="form-group">
+                  <div class="form-label">
+                    <label>Taches :</label>
+                  </div>
+                  <div class="form-input">
+                    <div formArrayName="subtasks" id="subtask-container">
+                      <div>
+                        <input type="text" class="form-control subtask-input">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                -->
+
+                <hr>
+                <div class="d-flex justify-content-end">
+                  <button type="submit" class="btn btn-primary mr-2"><i class="bi bi-plus-square"></i>Sauvgarder</button>
+                  <button class="btn btn-secondary" [routerLink]="['/dashEtd',idEtudiant,'listetacheperso']"><i class="bi bi-backspace-reverse"></i>Annuler</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

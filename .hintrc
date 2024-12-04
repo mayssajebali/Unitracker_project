@@ -1,0 +1,55 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "no-inline-styles": "off",
+    "axe/name-role-value": [
+      "default",
+      {
+        "link-name": "off",
+        "button-name": "off"
+      }
+    ],
+    "axe/aria": [
+      "default",
+      {
+        "aria-allowed-attr": "off",
+        "aria-progressbar-name": "off"
+      }
+    ],
+    "axe/forms": [
+      "default",
+      {
+        "label": "off",
+        "select-name": "off"
+      }
+    ],
+    "button-type": "off",
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "-webkit-overflow-scrolling",
+          "color-adjust",
+          "orphans",
+          "widows",
+          "text-align: -webkit-match-parent",
+          "-webkit-text-size-adjust",
+          "user-select",
+          "color: lighten(color(gray-dark), 20%)",
+          "color: lighten(color(gray-dark), 10%)"
+        ]
+      }
+    ],
+    "css-prefix-order": "off",
+    "meta-charset-utf-8": "off",
+    "axe/structure": [
+      "default",
+      {
+        "list": "off",
+        "listitem": "off"
+      }
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+.content-wrapper{
+    background-image: radial-gradient(circle, #5555557a 0.1px, transparent 1px), radial-gradient(circle, #55555580 0.1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    background-attachment: fixed;  /* Ensures the background scrolls with the page */
+    background-origin: padding-box; /* Adjusts the origin for the gradient */
+    z-index: 999;
+  
+}
+
+
+/* Dashboard container */
+.dashboard-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 40px;
+  max-width: 1400px;
+  margin: auto;
+  padding-top: 50px;
+}
+
+.dashboard-card {
+  background-color: #e6e9ee;
+  border-radius: 15px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #808080;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card-icon {
+  font-size: 50px;
+  color: #007bff;
+  padding-right: 20px;
+}
+
+.card-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-content h3 {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.card-content p {
+  font-size: 30px;
+  margin-top: 10px;
+  font-weight: 700;
+  color: #555;
+}
+
+@media screen and (max-width: 1200px) {
+  .dashboard-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .dashboard-container {
+    grid-template-columns: 1fr;
+  }
+}

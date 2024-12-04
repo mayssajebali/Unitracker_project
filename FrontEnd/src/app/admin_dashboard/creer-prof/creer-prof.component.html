@@ -1,0 +1,102 @@
+<!-- Main Container for the Page -->
+<div class="container-scroller">
+  
+  <!-- Sidebar Component -->
+  <app-sidebar></app-sidebar>
+
+  <!-- Main Content Area -->
+  <div class="container-fluid page-body-wrapper">
+
+    <!-- Navbar Component -->
+    <app-navbar></app-navbar>
+
+    <!-- Main Panel Section -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+        <!-- Card for Creating a Professor -->
+        <div class="col-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+
+              <!-- Title of the Form -->
+              <h2 class="card-title">Créer Professeur</h2>
+
+              <!-- Form for Professor Creation -->
+              <form class="forms-sample" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+                <!-- Personal Information Section -->
+                <p class="card-description"><i class="bi bi-dot"></i> Informations Personnelle </p>
+
+                <!-- Row for Name and Surname -->
+                <div class="row">
+                  <div class="col-md">
+                    <label for="nom_Prof" class="input-label">Nom</label>
+                    <input type="text" class="form-control custom-input" formControlName="nom_Prof" />
+                  </div>
+                  <div class="col-md">
+                    <label for="prenom_Prof" class="input-label">Prénom</label>
+                    <input type="text" class="form-control custom-input" formControlName="prenom_Prof" />
+                  </div>
+                </div>
+
+                <!-- Row for Email and Password -->
+                <div class="row">
+                  <div class="col-md">
+                    <label for="email_Prof" class="input-label">Email</label>
+                    <input type="email" class="form-control custom-input" formControlName="email_Prof" />
+                  </div>
+                  <div class="col-md">
+                    <label for="mot_de_passe_Prof" class="col-sm col-form-label input-label">Mot de passe</label>
+                    <div class="input-group">
+
+                      <!-- Password Input Field -->
+                      <input
+                        type="password"
+                        class="form-control custom-input"
+                        [type]="isPasswordVisible ? 'text' : 'password'"
+                        formControlName="mot_de_passe_Prof"
+                        [value]="form.get('mot_de_passe_Prof')?.value"
+                        readonly
+                      />
+                      <!-- Button to Generate Password -->
+                      <span class="input-group-text1" (click)="generateAndSetPassword()" style="cursor: pointer;">
+                        <i class="bi bi-shuffle"></i>
+                      </span>
+
+                      <!-- Button to Toggle Password Visibility -->
+                      <span class="input-group-text2" (click)="togglePasswordVisibility()" style="cursor: pointer;">
+                        <i class="bi" [ngClass]="isPasswordVisible ? 'bi-eye-slash-fill' : 'bi-eye-fill'"></i>
+                      </span>
+                    </div>
+                    <small class="form-text text-muted">Mot de passe généré automatiquement.</small>
+                  </div>
+                </div>
+
+                <!-- Success and Error Alerts -->
+                <div *ngIf="alertVisible1" class="alert alert-primary mt-3" role="alert">
+                  Professeur ajouté avec succès
+                </div>
+                <div *ngIf="alertVisible2" class="alert alert-danger mt-3" role="alert">
+                  Erreur lors de l'ajout !!
+                </div>
+                <hr />
+
+                <!-- Submit and Cancel Buttons -->
+                <div class="d-flex justify-content-end">
+                  <button type="submit" class="btn btn-secondary mr-2">
+                    <i class="bi bi-floppy"></i> Ajouter
+                  </button>
+                  <button class="btn btn-danger" (click)="cancel()">
+                    <i class="bi bi-backspace-reverse"></i> Annuler
+                  </button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

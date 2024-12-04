@@ -1,0 +1,52 @@
+<div class="container-scroller">
+    <app-sidebar></app-sidebar>
+    <div class="container-fluid page-body-wrapper">
+        <app-navbar></app-navbar>
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-12 grid-margin">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h2 class="card-title">Liste des Matières</h2>
+                                    <a class="nav-link btn btn-primary create-new-button" id="createbuttonDropdown" data-toggle="dropdown" aria-expanded="false" [routerLink]="['/mat']">
+                                        + Créer Matière
+                                    </a>
+                                </div>
+                                <hr>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nom</th>
+                                                <th>Classe</th>
+                                                <th>Année</th>
+                                                <th>Professeurs</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let matiere of filteredMatieres">
+                                                <td>{{ matiere.id_Matiere }}</td>
+                                                <td>{{ matiere.libelle }}</td>
+                                                <td>{{ getClassesNames(matiere) }}</td>
+                                                <td>{{ getClassesYear(matiere) }} </td>
+                                                <td>{{ matiere.professeurs.length }}</td>
+                                                <td *ngIf="matiere.id_Matiere !== undefined">
+                                                    <button class="btn btn-secondary" [routerLink]="['/updateMatiere', matiere.id_Matiere]"><i class="bi bi-pencil-square"></i></button>
+                                                    <button class="btn btn-danger"(click)="deleteMatiere(matiere.id_Matiere)" ><i class="bi bi-trash-fill"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

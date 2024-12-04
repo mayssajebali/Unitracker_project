@@ -1,0 +1,23 @@
+ <div class="container-scroller">
+   <app-sidebar-prof></app-sidebar-prof>
+          <div class="container-fluid page-body-wrapper">
+   <app-navbar-prof></app-navbar-prof>
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="dashboard">
+              <h1 class="dashboard-title">Résultats des Taches</h1>
+              <div class="charts-container">
+                <div class="chart-card" *ngFor="let chart of charts">
+                  <div class="chart-header">
+                    <h3>{{ chart.titre }}</h3>
+                    <p>{{ chart.description }}</p>
+                  </div>
+                  <canvas id="{{ chart.id }}" width="400" height="160"></canvas>
+                </div>
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    

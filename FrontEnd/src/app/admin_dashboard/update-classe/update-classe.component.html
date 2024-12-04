@@ -1,0 +1,108 @@
+<div class="container-scroller">
+  <app-sidebar></app-sidebar>
+  <div class="container-fluid page-body-wrapper">
+    <app-navbar></app-navbar>
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <form (ngSubmit)="onSubmit()">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">Modifier Classe</h2>
+
+              <div class="row">
+                <div class="col-md">
+                  <label for="nom_Classe" class="col-sm col-form-label input-label">Nom</label>
+                  <input
+                    type="text"
+                    class="form-control custom-input"
+                    [(ngModel)]="classe.nom_Classe"
+                    name="nom_Classe"
+                    required
+                  />
+                </div>
+
+                <div class="col-md">
+                  <label class="col-sm col-form-label input-label">Année</label>
+                  <select
+                    class="form-control custom-input"
+                    [(ngModel)]="classe.annee_Classe"
+                    name="annee"
+                    required
+                  >
+                    <option [ngValue]="1">1ère Année</option>
+                    <option [ngValue]="2">2ème Année</option>
+                    <option [ngValue]="3">3ème Année</option>
+                  </select>
+                </div>
+
+                <div class="col-md">
+                  <label class="col-sm col-form-label input-label">Numéro</label>
+                  <input
+                    type="number"
+                    class="form-control custom-input"
+                    [(ngModel)]="classe.num_Classe"
+                    name="num_Classe"
+                    required
+                  />
+                </div>
+              </div>
+
+              <br>
+
+              <div class="row">
+                <div class="col-md">
+                  <label class="col-sm col-form-label input-label">Matières S1</label>
+                  <div class="checklist-container">
+                    <div *ngFor="let matiere of matieresS1" class="form-check">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        [checked]="selectedMatiereIds.includes(matiere.id_Matiere!)"
+                        (change)="onMatiereChange(matiere.id_Matiere! , $event)"
+                        [value]="matiere.id_Matiere"
+                        name="matiereS1-{{ matiere.id_Matiere! }}"
+                      />
+                      <label class="form-check-label" for="matiereS1-{{ matiere.id_Matiere! }}">
+                        {{ matiere.libelle }}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md">
+                  <label class="col-sm col-form-label input-label">Matières S2</label>
+                  <div class="checklist-container">
+                    <div *ngFor="let matiere of matieresS2" class="form-check">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        [checked]="selectedMatiereIds.includes(matiere.id_Matiere!)"
+                        (change)="onMatiereChange(matiere.id_Matiere!, ($event))"
+                        [value]="matiere.id_Matiere"
+                        name="matiereS2-{{ matiere.id_Matiere! }}"
+                      />
+                      <label class="form-check-label" for="matiereS2-{{ matiere.id_Matiere !}}">
+                        {{ matiere.libelle }}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <hr>
+
+              <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-secondary mr-2">
+                  <i class="bi bi-floppy"></i> Modifier
+                </button>
+                <button type="button" class="btn btn-danger" (click)="onCancel()">
+                  <i class="bi bi-backspace-reverse"></i> Annuler
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

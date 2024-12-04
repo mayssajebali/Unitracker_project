@@ -1,0 +1,55 @@
+<div class="container-scroller">
+  <app-sidebar></app-sidebar>
+  <div class="container-fluid page-body-wrapper">
+    <app-navbar></app-navbar>
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <div class="row ">
+          <div class="col-12 grid-margin">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h2 class="card-title">Liste des Etudiants</h2>
+                  <a class="nav-link btn btn-primary create-new-button" id="createbuttonDropdown" data-toggle="dropdown"
+                    aria-expanded="false" [routerLink]="['/etd']">
+                    +Créer Etudiant
+                  </a>
+                </div>
+                <hr>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Mot de Passe</th>
+                        <th>Email</th>
+                        <th>Classes</th>
+                        <th>Année</th>
+                        <th>Action</th> 
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let etudiant of etudiants">
+                        <td>{{etudiant.id_Etudiant}}</td>
+                        <td>{{etudiant.nom_Etd}}-{{etudiant.prenom_Etd}}</td>
+                        <td>{{etudiant.mot_de_passe_Etd}} </td>
+                        <td>{{etudiant.email_Etd}}</td>
+                        <td>{{etudiant.classe}}-{{etudiant.numClasse}}</td> 
+                        <td>{{etudiant.anneeClasse}} </td>
+                        <td>
+                        <button class="btn btn-secondary" (click)="editEtudiant(etudiant)"><i class="bi bi-pencil-square"></i></button>
+                        <button class="btn btn-danger" (click)="deleteEtudiant(etudiant.id_Etudiant)"><i class="bi bi-trash-fill"></i></button>
+                        </td>                       
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,213 @@
+<div class="container-scroller">
+  <app-sidebar-etd></app-sidebar-etd>
+  <div class="container-fluid page-body-wrapper">
+    <app-navbar-etd></app-navbar-etd>
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h5 class="card-title">Mes Taches</h5>
+          <div class="d-flex">
+            <a class="nav-link btn btn-primary create-new-button"
+              [routerLink]="['/dashEtd', idEtudiant, 'creertacheperso']">+ Creer Tache</a>
+            <a class="nav-link btn btn-primary create-new-button ml-3" [routerLink]="['/creerGroupe']">+ Creer
+              Groupe</a>
+          </div>
+        </div>
+
+        <div class="kanban-container d-flex justify-content-between">
+
+          <div class="kanban-column">
+            <h5>To Do</h5>
+            <div *ngFor="let tache of taches2" class="card mb-3" (click)="openTaskDetails(tache)">
+              <div class="card-body">
+                <strong class="d-block mb-2">{{ tache.titre }}</strong>
+                <span class="text-muted">{{ tache.description }}</span>
+                <span class="text-muted">Date: {{ tache.dateLimite | date:'dd/MM/yyyy HH:mm' }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="kanban-column">
+            <h5 >In Progress</h5>
+            <div *ngFor="let tache of inProgressTasks" class="card mb-3" (click)="openTaskDetails(tache)">
+              <div class="card-body">
+                <strong class="d-block mb-2">{{ tache.titre }}</strong>
+                <span class="text-muted">{{ tache.description }}</span>
+                <span class="text-muted">Date: {{ tache.dateLimite | date:'dd/MM/yyyy HH:mm' }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="kanban-column">
+            <h5>Done</h5>
+            <div *ngFor="let tache of doneTasks" class="card mb-3" (click)="openTaskDetails(tache)">
+              <div class="card-body">
+                <strong class="d-block mb-2">{{ tache.titre }}</strong>
+                <span class="text-muted">{{ tache.description }}</span>
+                <span class="text-muted">Date: {{ tache.dateLimite | date:'dd/MM/yyyy HH:mm' }}</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for task details -->
+  <div class="task-modal" *ngIf="selectedTask && taches2 ">
+    <div class="task-modal-content">
+      <span class="close-btn" (click)="closeTaskDetails()">&times;</span>
+
+      <!-- Task title and basic information -->
+      <h3>{{ selectedTask.titre }}</h3>
+      <p><strong>Description:</strong> {{ selectedTask.description }}</p>
+      
+      <p><strong>Date limite:</strong> {{ selectedTask.dateLimite | date:'dd/MM/yyyy HH:mm' }}</p>
+<!-- Bouton pour démarrer le chronomètre -->
+<!-- <button *ngIf="!timers[selectedTask.id_Tache]?.running" (click)="startChronometre()" class="btn btn-primary">
+  <i class="fa fa-play"></i> Démarrer
+</button>
+
+ Bouton pour mettre en pause le chronomètre 
+<button *ngIf="timers[selectedTask.id_Tache]?.running" (click)="pauseChronometre()" class="btn btn-danger">
+  <i class="fa fa-pause"></i> Pause
+</button>
+
+$ Affichage du temps écoulé 
+<p>{{ timers[selectedTask.id_Tache]?.tempsEcoule }} secondes</p> -->
+
+      <div class="chronometre">
+        <strong>Temps écoulé : </strong> 
+        <button (click)="startChronometre()" *ngIf="!timers[selectedTask.id_Tache]?.running" class="btn btn-primary"><i class="fa fa-play"></i>{{ formatTime(tempsEcoule) }}</button>
+        <button (click)="pauseChronometre()" *ngIf="timers[selectedTask.id_Tache]?.running" class="btn btn-danger"><i class="fa fa-pause"></i>{{ formatTime(tempsEcoule) }}</button>
+      </div>
+
+      <!-- Edit button (only visible if the task is not assigned to a professor) -->
+      <div class="d-flex justify-content-between">
+        <button *ngIf="selectedTask.professeur == null" class="btn btn-lig"
+          [routerLink]="['/dashboardEtud', idEtudiant, 'taches', selectedTask.id_Tache]"
+          style="position: absolute; top: 10px; right: 40px;">
+          <i class="bi bi-pencil-square"></i>
+        </button>
+      </div>
+<hr>
+      <!-- Completion and Difficulty selection -->
+      <div *ngFor="let completion of selectedTask.completions">
+        <div *ngIf="completion.etudiant === idEtudiant">
+          <!-- Checkbox to mark task as completed -->
+          <div class="d-flex align-items-center">
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input check1" [(ngModel)]="completion.marquer"
+                (change)="markTaskAsCompleted(selectedTask.id_Tache, completion.etudiant, completion.marquer)"
+                id="completion-{{completion.tache_id}}-{{completion.etudiant}}" />
+              <label class="form-check-label" for="completion-{{completion.tache_id}}-{{completion.etudiant}}">
+              </label>
+            </div>
+            
+            <div style="margin: 0 10px;">
+              <strong>progression: {{completion.progression}}/{{ completion.totalSoustTaches === 0 ? 1 :
+                completion.totalSoustTaches }}</strong>
+            </div>
+          
+            <!-- Progress bar to show completion status -->
+            <div class="progress" style="height: 15px; flex-grow: 1;">
+              <div class="progress-bar" role="progressbar" [style.width]="completion.totalSoustTaches === 0 
+                            ? (completion.marquer ? '100%' : '0%') 
+                            : (completion.progression / completion.totalSoustTaches * 100) + '%'" [attr.aria-valuenow]="completion.totalSoustTaches === 0 
+                                    ? (completion.marquer ? 100 : 0) 
+                                    : (completion.progression / completion.totalSoustTaches * 100)" aria-valuemin="0"
+                aria-valuemax="100">
+              </div>
+            </div>
+          </div>
+          
+
+          <!-- Difficulty selection dropdown, shown after marking task as completed -->
+          <div class=" form-input form-group d-flex align-items-center" *ngIf="completion.marquer"  >
+              <label> <strong>Difficulté: </strong> </label>
+              <select class="form-control p_input" (change)="chooseDiff(completion, selectedTask.id_Tache)"
+                [(ngModel)]="completion.complexite">
+                <option value="" disabled selected>Choisir...</option>
+                <option value="Easy">Facile</option>
+                <option value="Medium">Moyenne</option>
+                <option value="Hard">Difficile</option>
+              </select>
+          </div>
+          <!-- Form to add a subtask -->
+          <form [formGroup]="tacheForm" (ngSubmit)="addSubTask(selectedTask)" class="task-form">
+            <label for="subtaskTitle" class="form-label">Sous-Tache</label>
+            <div class="input-button-container">
+              <input type="text" formControlName="titre" placeholder="Titre de la sous-tâche" id="subtaskTitle"
+                     class="form-input" />
+              <button type="submit" class="btn-submit">
+                <i class="bi bi-plus-square"></i>
+              </button>
+            </div>
+          </form>
+          
+
+          <!-- Display subtasks -->
+          <div *ngIf="selectedTask.sousTaches" class="subtasks-container">
+            <div *ngFor="let subtask of selectedTask.sousTaches" class="subtask-item">
+              <div *ngIf="subtask.completions" class="completion-container">
+                <div *ngFor="let c of subtask.completions" class="completion-item">
+                  <div *ngIf="c.etudiant === idEtudiant">
+                    <!-- Checkbox to mark task as completed -->
+                    
+                    <div class="form-check mt-2 d-flex align-items-center">
+                      <input type="checkbox" class="form-check-input" [(ngModel)]="c.marquer"
+                        (change)="markSubTaskAsCompleted(subtask.id_Tache, c.etudiant, c.marquer)"
+                        id="completion-{{c.tache_id}}-{{c.etudiant}}" />
+                      <label class="form-check-label subtask-title ms-2" for="completion-{{c.tache_id}}-{{c.etudiant}}">{{
+                        subtask.titre }}</label>
+                      <!-- Progress bar to show completion status -->
+                      <div class="progress ml-3" style="flex-grow: 2;">
+                        <div class="progress-bar" role="progressbar" [style.width]="c.marquer ? '100%' : '0%'"
+                          [attr.aria-valuenow]="c.marquer ? 100 : 0" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                    
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add comment section -->
+          <div class="comment-section">
+            <label for="commentInput" class="form-label">Commentaires</label>
+            <div class="input-button-container">
+              <input type="text" [(ngModel)]="comment" placeholder="Ajouter un commentaire" id="commentInput"
+                     class="form-input" />
+              <button (click)="addComment(selectedTask.id_Tache, comment, completion)" class="btn-submit">
+                <i class="bi bi-plus-square"></i>
+              </button>
+            </div>
+          </div>
+          
+
+          <!-- Display existing comments -->
+          <div *ngFor="let completion of selectedTask.completions" class="comment-list">
+            <div *ngFor="let comment of completion.commentaires" class="comment-item">
+              <strong class="comment-text">{{ comment }}</strong> <small class="comment-author">{{
+                completion.etudiantName
+                }}</small>
+            </div>
+          </div>
+
+
+
+          <!-- Delete task button (only visible if the task is not assigned to a professor) -->
+          <div class="d-flex justify-content-between mt-3">
+            <button *ngIf="selectedTask.professeur == null" class="btn btn-danger"
+              (click)="deleteTask(selectedTask.id_Tache, idEtudiant)">
+              <i class="bi bi-trash-fill"></i>
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>

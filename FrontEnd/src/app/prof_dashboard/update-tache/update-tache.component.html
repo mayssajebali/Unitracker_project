@@ -1,0 +1,67 @@
+<div class="container-scroller">
+  <app-sidebar-prof></app-sidebar-prof>
+  <div class="container-fluid page-body-wrapper">
+    <app-navbar-prof></app-navbar-prof>
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <div class="row w-100 m-0">
+          <div class="card col-lg-8 mx-auto">
+            <div class="card-body px-5 py-5">
+              <h2 class="card-title text-left mb-3">Modifier tache</h2>
+              <form [formGroup]="form" (ngSubmit)="onSubmit()">
+<hr>
+                <div class="form-group">
+                    <div class="form-label">
+                      <label>Titre</label>
+                    </div>
+                    <div class="form-input">
+                      <input type="text" class="form-control p_input" formControlName="titre">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-label">
+                      <label>Description</label>
+                    </div>
+                    <div class="form-input">
+                      <textarea class="form-control" formControlName="description"></textarea>
+                    </div>
+                </div>
+                <!--
+                <div class="form-group">
+                  <label>Matiere :</label>
+                  <select class="form-control p_input" formControlName="matiere" id="matiere">
+                    <option *ngFor="let matiere of matieres" [ngValue]="matiere">
+                      {{ matiere.libelle }}
+                    </option>
+                  </select>
+                </div>
+-->
+                <div class="form-group">
+                    <div class="form-label">
+                      <label>Date limite</label>
+                    </div>
+                    <div class="form-input">
+                      <input type="datetime-local" class="form-control custom-datetime-dark"
+                        formControlName="dateLimite">
+                    </div>
+                </div>
+<hr>
+                <div class="d-flex justify-content-end mt-4">
+                  <button type="submit" class="btn btn-primary mr-2">
+                    <i class="bi bi-plus-square"></i> Maodifier
+                  </button>
+                  <button class="btn btn-secondary" [routerLink]="['/dashboardProf', idProf, 'listetaches']">
+                    <i class="bi bi-backspace-reverse"></i> Annuler
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div *ngIf="alertVisible1" class="alert alert-primary mt-3" role="alert">Tache ajoutee avec succès</div>
+            <div *ngIf="alertVisible0" class="alert alert-danger mt-3" role="alert">Error !!!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

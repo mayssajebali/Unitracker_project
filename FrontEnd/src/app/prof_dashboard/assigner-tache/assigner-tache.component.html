@@ -1,0 +1,25 @@
+<div class="container">
+    <h2>Assigner Tâche</h2>
+    
+    <div class="form-group">
+      <label for="tacheId">ID de la Tâche :</label>
+      <input type="number" [(ngModel)]="tacheId" class="form-control" id="tacheId" required>
+    </div>
+  
+    <div class="form-group">
+        <label>Étudiants :</label>
+        <div *ngFor="let etudiant of etudiants">
+          <input type="checkbox" [value]="etudiant.id_Etudiant" (change)="onEtudiantChange($event)">
+          {{ etudiant.nom_Etd }} {{ etudiant.prenom_Etd }}
+        </div>
+        <!-- <label>les classes associées au prof :</label>
+        <div *ngFor="let classes of tabClassNames">
+          <input type="checkbox" [value]="classes">
+          {{ classes }} 
+        </div> -->
+      </div>
+  
+    <button (click)="assignTask()" class="btn btn-primary">Assigner Tâche</button>
+
+  </div>
+  

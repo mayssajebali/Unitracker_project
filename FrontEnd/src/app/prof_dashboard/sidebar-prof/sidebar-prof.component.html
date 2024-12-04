@@ -1,0 +1,89 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+    <a class="sidebar-brand brand-logo" href="index.html" style="display: flex;">
+      <img src="assets/images/favicon.png" alt="LOGO" style="width: 30px; height: 30px; margin: 0;">
+      <h1 class="sidebar-title">niTracker</h1>
+    </a>
+  </div>
+
+  <ul class="nav">
+    <li class="nav-item profile">
+      <div class="profile-desc">
+        <div class="profile-pic">
+          <div class="count-indicator">
+            <img class="img-xs rounded-circle" src="assets/images/faces/face0.jpg" alt="">
+            <span class="count bg-success"></span>
+          </div>
+          <div class="profile-name">
+            <h3 class="mb-0 font-weight-bold">{{name}}</h3>
+          </div>
+        </div>
+        <a href="" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
+        <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
+          <a class="nav-link dropdown-item preview-item" [routerLink]="['/dashboard']" routerLinkActive="active">
+            <div class="preview-item-content">
+              <p class="preview-subject ellipsis mb-1 text-small">Admin</p>
+            </div>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="nav-link dropdown-item preview-item" [routerLink]="['/dashEtd']" routerLinkActive="active">
+            <div class="preview-item-content">
+              <p class="preview-subject ellipsis mb-1 text-small">Etudiant</p>
+            </div>
+          </a>
+          <div class="dropdown-divider"></div>
+        </div>
+      </div>
+    </li>
+
+    <li class="nav-item nav-category"><span class="nav-link"></span></li>
+
+    <!-- Dashboard -->
+    <li class="nav-item menu-items">
+      <a class="nav-link" [routerLink]="['/dashboardProf',idProf]" routerLinkActive="active">
+        <span class="menu-icon"><i class="mdi mdi-speedometer text-dark"></i></span>
+        <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+
+
+    <!--Projet -->
+    <li class="nav-item menu-items">
+      <a class="nav-link">
+        <span class="menu-icon"><i class="fa-solid fa-folder-open"></i></span>
+        <span class="menu-title">Projet</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div>
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"><a class="nav-link"><i class="bi bi-caret-right-fill"></i>Tous</a></li>
+          <li class="nav-item"><a class="nav-link"><i class="bi bi-caret-right-fill"></i>Classe - Matiere</a></li>
+          <li class="nav-item"><a class="nav-link"><i class="bi bi-caret-right-fill"></i>Classe - Matiere</a></li>
+          <li class="nav-item"><a class="nav-link"><i class="bi bi-caret-right-fill"></i>Classe - Matiere</a></li>
+        </ul>
+      </div>
+    </li>
+    <!-- Tâches -->
+    <li class="nav-item menu-items">
+      <a class="nav-link" >
+        <span class="menu-icon"><i class="fa-solid fa-list-check text-primary"></i></span>
+        <span class="menu-title">Tâches</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div>
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"><a class="nav-link" [routerLink]="['/dashboardProf', idProf, 'listetaches']" routerLinkActive="active"><i class="bi bi-caret-right-fill"></i>Tous</a></li>
+          <!-- <li class="nav-item"><a class="nav-link"><i class="bi bi-caret-right-fill"></i>Personnel</a></li> -->
+          <li *ngFor="let m of matieres" class="nav-item"><a class="nav-link" [routerLink]="['/dashboardProf', idProf, 'listetaches', m.id_Matiere]" routerLinkActive="active"><i class="bi bi-caret-right-fill"></i>{{m.libelle}}</a></li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="nav-item menu-items bottom-item">
+      <a class="nav-link" [routerLink]="['/login']">
+        <span class="menu-icon"><i class="mdi mdi-logout text-dark"></i></span>
+        <span class="menu-title">Déconnexion</span>
+      </a>
+    </li>
+  </ul>
+</nav>

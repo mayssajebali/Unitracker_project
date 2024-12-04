@@ -1,0 +1,118 @@
+<div class="container-scroller">
+  <!-- Sidebar Component -->
+  <app-sidebar></app-sidebar>
+  <div class="container-fluid page-body-wrapper">
+
+    <!-- Navbar Component -->
+    <app-navbar></app-navbar>
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+        <!-- Class Creation Form -->
+        <form (ngSubmit)="onSubmit()" #classeForm="ngForm">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">Créer Classe</h2>
+              <div *ngIf="alertVisible3" class="alert alert-danger mt-3" role="alert">
+                Aucun matiere trouvé. Veuillez ajouter des <strong>Matieres</strong>  d'abord!!
+            </div>
+              <!-- Class Details Section -->
+              <div class="row">
+
+                <!-- Class Name Field -->
+                <div class="col-md">
+                  <label for="nom_Classe" class="col-sm col-form-label input-label">Nom</label>
+                  <input 
+                    type="text" 
+                    class="form-control custom-input" 
+                    id="nom_Classe" 
+                    required 
+                    [(ngModel)]="classe.nom_Classe" 
+                    name="nom" />
+                </div>
+
+                <!-- Year of Study Field -->
+                <div class="col-md">
+                  <label class="col-sm col-form-label input-label">Année</label>
+                  <select class="form-control custom-input" [(ngModel)]="classe.annee_Classe" name="annee">
+                    <option [ngValue]="1">1ère Année</option>
+                    <option [ngValue]="2">2ème Année</option>
+                    <option [ngValue]="3">3ème Année</option>
+                  </select>
+                </div>
+                
+                <!-- Class Number Field -->
+                <div class="col-md">
+                  <label class="col-sm col-form-label input-label">Numéro</label>
+                  <input 
+                    type="number" 
+                    class="form-control custom-input" 
+                    required 
+                    [(ngModel)]="classe.num_Classe" 
+                    name="num_Classe" />
+                </div>
+              </div>
+              <br>
+
+              <!-- Subjects Section -->
+              <div class="row">
+                <!-- S1 Subjects -->
+                <div class="col-md">
+                  <label class="col-sm col-form-label input-label">Matières S1</label>
+                  <div class="checklist-container">
+                    <div *ngFor="let matiere of getMatiereS1()" class="form-check">
+                      <input 
+                        type="checkbox"
+                        class="form-control custom-input form-check-input checkbox-input"
+                        (change)="toggleSelectionMatiere(matiere)"
+                        id="matiereS1-{{matiere.id_Matiere}}" />
+                      <label class="form-check-label" for="matiereS1-{{matiere.id_Matiere}}">
+                        {{ matiere.libelle }}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- S2 Subjects -->
+                <div class="col-md">
+                  <label class="col-sm col-form-label input-label">Matières S2</label>
+                  <div class="checklist-container">
+                    <div *ngFor="let matiere of getMatiereS2()" class="form-check">
+                      <input 
+                        type="checkbox"
+                        class="form-control custom-input form-check-input checkbox-input"
+                        (change)="toggleSelectionMatiere(matiere)"
+                        id="matiereS2-{{matiere.id_Matiere}}" />
+                      <label class="form-check-label" for="matiereS2-{{matiere.id_Matiere}}">
+                        {{ matiere.libelle }}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Success/Error Alerts -->
+            <div *ngIf="alertVisible1" class="alert alert-primary mt-3" role="alert">Classe ajouté avec succès</div>
+            <div *ngIf="alertVisible2" class="alert alert-danger mt-3" role="alert">Erreur lors de l'ajout !!</div>
+            <hr>
+
+            <!-- Action Buttons -->
+            <div class="d-flex justify-content-end">
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-secondary mr-2">
+                <i class="bi bi-floppy"></i> Ajouter
+              </button>
+              
+              <!-- Cancel Button -->
+              <button class="btn btn-danger" (click)="cancel()">
+                <i class="bi bi-backspace-reverse"></i> Annuler
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+<nav class="navbar p-0 fixed-top d-flex flex-row">
+    <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+      <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/favicon.png" alt="LOGO" style="width: 30px; height: 30px; margin: 0;" alt="logo" /></a>
+    </div>
+    <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+      <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+        <span class="mdi mdi-menu"></span>
+      </button>
+      <ul class="navbar-nav w-100">
+        <li class="nav-item w-100">
+          <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+            <input type="text" class="form-control" placeholder="Rechercher">
+          </form>
+        </li>
+      </ul>
+      <ul class="navbar-nav navbar-nav-right">
+        <li class="nav-item dropdown border-left">
+          <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown" >
+            <i class="mdi mdi-bell" (click)="OnclickBell()"></i>
+            <span class="count bg-danger" *ngIf="hasNewNotifications && !clicked" (click)="OnclickBell()"></span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+            <h5 class="p-3 mb-0" style="color: black;">Notifications</h5>
+            <div class="dropdown-divider" *ngIf="rappels && rappels.length > 0;else noNotifications"></div>
+             
+              <div class="preview-item-content">
+              <div>
+                
+               <div *ngFor="let rappel of rappels;let i = index">
+                <a class="dropdown-item preview-item">
+
+                <div class="preview-thumbnail">
+                  <div class="preview-icon rounded-circle">
+                    <i class="fa-regular fa-clock" style="color: rgb(182, 47, 47);"></i>
+                </div>
+                </div>
+                  <p style="padding-top: 15px;padding-right: 6px;">   &nbsp;{{rappel}}</p>
+                </a>
+                <div class="dropdown-divider"></div>
+              </div>
+              <div *ngFor="let notification of notifications;let i = index">
+                <a class="dropdown-item preview-item">
+
+                <div class="preview-thumbnail">
+                  <div class="preview-icon rounded-circle">
+                    <i class="fa-regular fa-clock" style="color: rgb(182, 47, 47);"></i>
+                </div>
+                </div>
+                  <p style="padding-top: 15px;padding-right: 6px;">   &nbsp;{{notification}}</p>
+                </a>
+                <div class="dropdown-divider"></div>
+              </div>
+               <p>    </p>
+              </div>
+              </div>
+      
+            <ng-template #noNotifications>
+              <a class="dropdown-item preview-item" >
+
+                <div class="preview-thumbnail">
+                  
+                </div>
+                  <p>Aucune notification trouvée pour le moment</p>
+                </a>
+            </ng-template>
+            
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
+            <div class="navbar-profile">
+              <img class="img-xs rounded-circle" src="assets/images/faces/face0.jpg" alt="">
+              <p class="mb-0 d-none d-sm-block navbar-profile-name">{{name}}</p>
+              <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+            </div>
+          </a>
+
+        </li>
+      </ul>
+      <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+        <span class="mdi mdi-format-line-spacing"></span>
+      </button>
+    </div>
+  </nav>
+  
+  

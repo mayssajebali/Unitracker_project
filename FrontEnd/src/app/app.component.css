@@ -1,0 +1,28 @@
+
+
+
+.cursorFollower {
+    position: fixed;
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 1px solid #007bff69 !important;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 3s;
+    z-index: 9999;
+    pointer-events: none;
+  }
+  
+  .cursorFollowerDot {
+    position: fixed;
+    width: 0.4rem;
+    height: 0.4rem;
+    background: #007bff9c !important;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 3s;
+    z-index: 9999;
+    pointer-events: none;
+  }
+  
+

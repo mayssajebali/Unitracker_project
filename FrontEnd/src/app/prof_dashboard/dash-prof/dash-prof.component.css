@@ -1,0 +1,67 @@
+.content-wrapper {
+    background-image: radial-gradient(circle, #5555557a 0.1px, transparent 1px), radial-gradient(circle, #55555580 0.1px, transparent 1px) !important;
+    background-size: 20px 20px !important;
+    background-position: 0 0, 10px 10px !important;
+    background-attachment: fixed !important;
+    background-origin: padding-box !important;
+ }
+ 
+ .dashboard {
+    padding: 20px;
+    font-family: cursive !important;
+    border-radius: 10px;
+ }
+ 
+ .dashboard-title {
+    font-family: cursive !important;
+    color: #333;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+ }
+ 
+ .charts-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px;
+    margin-bottom: 20px;
+ }
+ 
+ .chart-card {
+    border-radius: 20px;
+    padding: 20px;
+    background-color: #e6e9ee;
+    border: 1px solid #808080;
+    transition: transform 0.3s, box-shadow 0.3s;
+ }
+ 
+ .chart-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
+ }
+ 
+ .chart-header h3 {
+    font-family: cursive !important;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+ }
+ 
+ .chart-header p {
+    font-size: 14px;
+    color: #555;
+ }
+ 
+ canvas {
+    margin: 10px auto;
+    display: block;
+ }
+ 
+ /* Responsive design for the second row */
+ @media (max-width: 768px) {
+    .charts-container {
+        grid-template-columns: 1fr; /* Stacks charts vertically on smaller screens */
+    }
+ }
+ 

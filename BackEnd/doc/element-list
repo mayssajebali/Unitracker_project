@@ -1,0 +1,5 @@
+com.dsi.projet
+com.dsi.projet.controllers
+com.dsi.projet.entities
+com.dsi.projet.repositories
+com.dsi.projet.services

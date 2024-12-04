@@ -1,0 +1,33 @@
+
+<div class="background" >
+  <div class="shape"></div>
+  <div class="shape"></div>
+</div>
+
+<div class="login-page">
+  <div class="login-card">
+    <form (ngSubmit)="login()">
+    <h1 class="login-title"><img src="assets/images/favicon.png" alt="LOGO" style="width: 50px; height: 55px; margin: 0;filter: drop-shadow(0px 0px 2px white);transform: translateY(-10px);
+" alt="logo" />NITRACKER</h1>
+    <p class="login-subtitle">Veuillez vous connecter à votre compte</p>
+    
+      <div class="form-group">
+        <label for="email" class="form-label">E-mail</label>
+        <input id="email" type="text" class="form-control" [(ngModel)]="email" name="email" required placeholder="Entrez votre e-mail">
+      </div>
+      <div class="form-group">
+        <label for="password" class="form-label">Mot de passe</label>
+        <input id="password" type="password" class="form-control" [(ngModel)]="password" name="password" required placeholder="Entrez votre mot de passe">
+      </div>
+      
+      <div class="text-center">
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+        <button type="submit" class="btn btn-primary submit-btn">Se connecter</button>
+      </div>
+      
+    </form>
+    
+  </div>
+</div>
+
+

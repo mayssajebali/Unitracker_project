@@ -1,0 +1,383 @@
+/* Overall Container */
+.kanban-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  
+  /* Kanban Column */
+  .kanban-column {
+    background-color: #f4f6f9;
+    border-radius: 12px;
+    padding: 25px;
+    flex: 1;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    min-width: 280px; /* Ensures responsiveness */
+  }
+  
+  .kanban-column:hover {
+    transform: translateY(-10px);
+  }
+  
+   h5 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Cards */
+  .card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 0px;
+    margin-bottom: 20px;
+    border: 1px solid #e0e0e0;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+  }
+  
+  .card-body {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .card-body strong {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .card-body span {
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* Buttons */
+  .btn {
+    font-weight: 600;
+    border-radius: 50px;
+    padding: 12px 30px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
+  }
+  
+  .bi-pencil-square {
+    color: #333;
+    font-size: larger;
+  }
+  
+  /* Modal */
+  .task-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .task-modal-content {
+    background-color: #ffffff;
+    color: #333;
+    padding: 35px;
+    border-radius: 12px;
+    width: 80%;
+    max-width: 500px;
+    max-height: 80%;
+    overflow-y: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .task-modal-content:hover {
+    transform: scale(1.03);
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .task-modal h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+  }
+  
+  .task-modal p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+  }
+  
+  /* Form Elements */
+  .form-control {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    color: #333;
+    border-radius: 8px;
+    transition: border 0.3s ease;
+    margin-bottom: 15px;
+  }
+  
+  .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  .form-check{
+    margin: 0 0 0 0 !important;
+    padding:  0 0 0 10px !important;
+  }
+  
+  /* Progress Bar */
+  .progress {
+    height: 12px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    margin-top: 0px;
+  }
+  
+  .progress-bar {
+    background-color: #007bff;
+    border-radius: 10px;
+    height: 100%;
+    transition: width 0.5s ease;
+  }
+  
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    .kanban-container {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .kanban-column {
+      min-width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .task-modal-content {
+      width: 95%;
+      padding: 20px;
+    }
+  
+    .kanban-column h5 {
+      font-size: 1rem;
+    }
+    h5{
+      font-family: cursive !important;
+    }
+  
+    .card-body {
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Task Form & Comment Section */
+  .task-form, .comment-section, form {
+    margin: 0px !important;
+    margin-top: 10px !important;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px 8px 0px 0px;
+    border: 1px solid #80808041;
+  }
+  
+  .form-label {
+    font-weight: bold;
+    color: #333;
+    display: block;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+  }
+  
+  .form-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  .btn-submit {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-submit:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Subtasks */
+  .subtasks-container {
+    background-color: #f4f4f4;
+    border-radius: 0 0 8px 8px ;
+    margin: 5px 0 10px 0;
+    border: 1px solid #80808041;
+  }
+  
+  .subtask-item {
+    padding: 4px 8px 4px 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .completion-container {
+    margin-left: 10px;
+  }
+  
+  .completion-item {
+    padding: 0;
+    font-size: 14px;
+  }
+  
+  .subtask-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  /* Comment Section */
+  .comment-section {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+  }
+  
+  .comment-section input , .task-form input{
+    flex: 1;
+  }
+  
+  .comment-list {
+    margin-top: 5px;
+    border: 1px solid #80808041;
+    border-radius: 0 0 8px 8px ;
+    background-color: #f4f4f4;
+  }
+  
+  .comment-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .comment-text {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .comment-author {
+    font-size: 12px;
+    color: #555;
+    font-style: italic;
+  }
+  
+  h5{
+    font-family: cursive !important;
+  }
+  
+  .content-wrapper{
+    background-image: radial-gradient(circle, #5555557a 0.1px, transparent 1px), radial-gradient(circle, #55555580 0.1px, transparent 1px) !important;
+    background-size: 20px 20px  !important;
+    background-position: 0 0, 10px 10px !important;
+    background-attachment: fixed !important;  /* Ensures the background scrolls with the page */
+    background-origin: padding-box !important; /* Adjusts the origin for the gradient */
+  }
+  
+  
+  .check1{
+    margin-left: -10px !important;
+  }
+  
+  .comment-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns label to the left */
+    gap: 5px;
+    margin-top: 30px;
+    width: 100%;
+  }
+  
+  .form-label {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .input-button-container {
+    display: flex;
+    width: 100%;
+  }
+  
+  .form-input {
+    flex: 1; /* Makes the input take the remaining space */
+    padding: 10px;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+  }
+  
+  .form-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  .btn-submit {
+    width: 50px; /* Fixed width for the button */
+    padding: 0 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-submit:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  

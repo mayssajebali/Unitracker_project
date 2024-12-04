@@ -1,0 +1,13 @@
+.navbar-menu-wrapper{
+    box-shadow: none !important;
+}
+.nav-item{
+    color: #808080 !important;
+}
+
+.dropdown-menu,.preview-item{
+    border-radius: 15px !important;
+    border: 1px solid #808080 !important;
+    box-shadow: 0px 0px 20px #c0bfbf !important;
+}
+ 

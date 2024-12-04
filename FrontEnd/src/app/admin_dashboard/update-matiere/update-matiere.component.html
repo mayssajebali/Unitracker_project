@@ -1,0 +1,82 @@
+<div class="container-scroller">
+  <app-sidebar></app-sidebar>
+  <div class="container-fluid page-body-wrapper">
+    <app-navbar></app-navbar>
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <form #matiereForm="ngForm" (ngSubmit)="onSubmit()">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">Modifier Matière</h2>
+
+              <div class="row">
+                <!-- Nom input -->
+                <div class="col-md">
+                  <label for="libelle_Matiere" class="col-sm col-form-label input-label">Nom</label>
+                  <input type="text" class="form-control custom-input" id="libelle_Matiere" name="libelle_Matiere"
+                    [(ngModel)]="matiere.libelle" required />
+                </div>
+
+                <!-- Semestre selection -->
+                <div class="col-md">
+                  <label class="col-sm col-form-label input-label">Semestre</label>
+                  <select class="form-control custom-input" name="semestre" [(ngModel)]="matiere.semestre" required>
+                    <option value="1">S1</option>
+                    <option value="2">S2</option>
+                  </select>
+                </div>
+              </div>
+
+              <br>
+              <div class="row">
+                <!-- Professors checklist -->
+                <div class="col-md">
+                  <label class="col-sm col-form-label input-label">Professeurs</label>
+                  <div class="checklist-container">
+                    <div *ngFor="let prof of professeurs">
+                      <div class="form-check">
+                        <input type="checkbox" [value]="prof.id_Professeur"
+                          [checked]="selectedProfessors.includes(prof.id_Professeur || 0)"
+                          (change)="onProfChange($event, prof.id_Professeur)">
+                        {{ prof.nom_Prof }} - {{ prof.prenom_Prof}}
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Classes checklist -->
+                <div class="col-md">
+                  <label class="col-sm col-form-label input-label">Classes</label>
+                  <div class="checklist-container">
+                    <div *ngFor="let classe of classes">
+                      <div class="form-check">
+                        <input type="checkbox" [value]="classe.id_Classe" [checked]="selectedClasses.includes(classe)"
+                          (change)="onClassChange($event, classe)">
+                        {{ classe.nom_Classe }} - {{ classe.annee_Classe }}0{{ classe.num_Classe }}
+
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr>
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="btn btn-secondary mr-2">
+                <i class="bi bi-floppy"></i> Mettre à jour
+              </button>
+              <button type="button" class="btn btn-danger" (click)="onCancel()">
+                <i class="bi bi-backspace-reverse"></i> Annuler
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
